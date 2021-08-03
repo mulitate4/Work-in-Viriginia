@@ -1,0 +1,273 @@
+/*? GENERAL SECTION */
+*, html {padding:0; margin:0;}
+
+body {
+    color: white;
+    font-family: Comfortaa, cursive;
+    background-color: black;
+    max-height: 700px;
+}
+
+p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+h2 {
+    font-size: 1.7rem;
+}
+
+a {
+    color: #16C60C;
+    cursor: pointer;
+}
+
+button {
+    outline: none;
+    border: none;
+
+    background-color: transparent;
+
+    font-family: Comfortaa, cursive;
+    color: white;
+    font-size: 1.1rem;
+
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+button:active {
+    font-size: 0.9rem;
+}
+
+a:visited {
+    color: #237e1e;
+}
+
+.green {
+   color: #16C60C;
+}
+
+.animationDiv {
+    animation: slideIn .2s;
+}
+
+input {
+    outline: none;
+    border: none;
+    background-color: transparent;
+
+    color: white;
+    font-family: Comfortaa, cursive;
+}
+
+/*? NAVBAR SECTION */
+.navbar {
+    font-size: 1rem;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0, 0.8);
+}
+
+.navbar a {
+    opacity: initial;
+    float: left;
+    display: block;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    -webkit-transition: all .4s ease-in-out .05s;
+       -moz-transition: all .4s ease-in-out .05s;
+        -ms-transition: all .4s ease-in-out .05s;
+         -o-transition: all .4s ease-in-out .05s;
+            transition: all .4s ease-in-out .05s;
+}
+
+.navbar a.right {
+    float: right;
+}
+
+.navbar a:hover {
+    color: black;
+    background-color: #16C60C;
+}
+
+
+/*? CUSTOM ALERT SECTION */
+.alertHr {
+    border: none;
+    border-bottom: 2px solid #777;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.alertDiv {
+
+    right: 0;
+    bottom: 0;
+    position: absolute;
+
+    margin-right: 40px;
+    margin-bottom: 100px;
+
+    /* padding: 10px; */
+    
+    /*? Make it appear on top of everything */
+    z-index: 100;
+
+    height: auto;
+    width: 270px;
+    background-color: #222;
+    border-radius: 5px;
+
+    animation: fadeIn 1s;
+}
+
+.alertH3 {
+    text-decoration: none;
+    font-size: 1.3rem;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.alertP {
+    font-size: 1rem;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+/*? FOOTER SECTION */
+.footerDiv {
+    font: 1rem;
+    width: 80vw;
+    margin-left: 10vw;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+}
+
+/*? CHECKBOXES SECTION */
+/*? This was taken from www.CSScheckbox.com` */
+label {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+    
+input[type=checkbox].css-checkbox {
+        position: absolute; 
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height:1px; 
+    width:1px; 
+    margin:-1px; 
+    padding:0;
+    border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+    padding-left:20px;
+    height:15px; 
+    display:inline-block;
+    line-height:15px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:15px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+    background-position: 0 -15px;
+}
+
+.css-label{
+    background-image:url(http://csscheckbox.com/checkboxes/dark-check-green.png);
+}
+
+.web-two-style{background-image:url(../images/icons/web-two-style-checkbox.png);}
+
+input[type=checkbox].css-checkbox.lrg + label.css-label.lrg {
+	padding-left:22px;
+    height:20px; 
+	display:inline-block;
+	line-height:20px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:15px;
+	vertical-align:middle;
+    cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox.lrg:checked + label.css-label.lrg{
+    background-position: 0 -20px;
+}
+
+/*? MISC */
+.deleting {
+    animation: swipeOut 1.1s;
+}
+
+/*? ANIMATION SECTION */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut{
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes swipeOut {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes fillHr {
+    0% {
+        border-top: 2px solid white;
+    }
+    100% {
+        border-top: 2px solid #16C60C;
+    }
+}
+
+@keyframes unfillHr {
+    0% {
+        border-top: 2px solid #16C60C;
+    }
+    100% {
+        border-top: 2px solid white;
+    }
+}
