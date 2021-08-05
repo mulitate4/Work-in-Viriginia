@@ -5,4 +5,6 @@ from api.v1.models import *
 
 router = APIRouter()
 
-@router.post(path="/")
+@router.post(path="/{number}")
+async def endpoint(number: int):
+    pass
