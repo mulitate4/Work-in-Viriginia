@@ -62,6 +62,10 @@ input {
     font-family: Comfortaa, cursive;
 }
 
+input:focus {
+    border-bottom: 1px solid var(--primary-color);
+}
+
 
 /*? CUSTOM DIVS SECTION */
 .highlight {
