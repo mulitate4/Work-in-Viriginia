@@ -67,6 +67,71 @@ input:focus {
 }
 
 
+/* SCROLLBAR CUSTOMIZATION */
+::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+}
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, .1);
+}
+  
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, .2);
+}
+
+::-webkit-scrollbar-button {
+    background: white;
+}
+
+/* Buttons */
+::-webkit-scrollbar-button:single-button:horizontal {
+    background-color: transparent;
+    display: block;
+    border-style: solid;
+    height: 13px;
+    width: 16px;
+}
+
+/* No Vertical Buttons */
+::-webkit-scrollbar-button:single-button:vertical {
+    display: none;
+}
+
+/* Left Button */
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-left-color: transparent ;
+    border-right: 8px solid rgba(255, 255, 255, .1);
+}
+  
+::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
+    border-right: 8px solid rgba(255, 255, 255, .2);
+}
+
+/* Right Button */
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent; 
+    border-left: 8px solid rgba(255, 255, 255, .1);
+    border-right-color: transparent ;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:increment:hover {
+    border-left: 8px solid rgba(255, 255, 255, .2);
+}
+
+
 /*? CUSTOM DIVS SECTION */
 .highlight {
    color: var(--primary-color);
@@ -107,7 +172,6 @@ input:focus {
     color: black;
     background-color: var(--primary-color);
 }
-
 
 /*? CUSTOM ALERT SECTION */
 
@@ -157,6 +221,10 @@ import misc_functions into your html
     margin-left: 10px;
     margin-top: 10px;
     padding-bottom: 10px;
+}
+
+.deleting {
+    animation: 1s swipeOut
 }
 
 
