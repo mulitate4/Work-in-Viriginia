@@ -13,7 +13,7 @@ MONGO_DETAILS = ""
 
 
 # ROUTERS SECTION
-app.include_router(Router, tags=["Router"], prefix="api/v1/route")
+app.include_router(Router, tags=["Router"], prefix="/api/v1/route")
 app.include_router(WebAppRouter, tags=["Web-App"], prefix="")
 
 app.mount("/static", StaticFiles(directory="webapp/static"), name="static")
