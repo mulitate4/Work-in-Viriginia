@@ -1,37 +1,3 @@
-// Custom Error message
-async function customAlert(title, info) {
-    let errorDiv = $(".error");
-    errorDiv.innerHTML = "";
-
-    let alertDiv = CE("div", {
-        classList: ["alertDiv"],
-        parent: errorDiv
-    });
-
-    CE("H3", {
-        "innerHTML": title,
-        classList: ["alertH3"], 
-        parent: alertDiv
-        },
-    );
-
-    CE("hr", {
-        classList: ["alertHr"], 
-        parent: alertDiv
-    });
-
-    CE("p", {
-        "innerHTML": info,
-        classList: ["alertP"], 
-        parent: alertDiv    
-    });
-
-    await wait(3000);
-    alertDiv.classList.add("deleting")
-    await wait(1000);
-    errorDiv.innerHTML = "";
-}
-
 // Added for laziness
 function log(e){
     console.log(e)
@@ -43,42 +9,38 @@ function redirect(path){
     return true;
 }
 
-// Asynchronous timeOut function
-async function wait(ms) {
-    return new Promise(resolve => {
-      setTimeout(resolve, ms);
-    });
-}
-
-// Function copied from https://stackoverflow.com/questions/10726909/random-alpha-numeric-string-in-javascript
-// Generates a 12 digit long alphanumeric string.
-function generateUID() {
-    return Math.random().toString(36).slice(2)
-}
 
 // Creates an element. Added for reducing redundant code.
-function CE( type, options ) {
+function CE( type, options, ...children ) {
     elem = document.createElement(type);
 
     // Add all the attributes of the element
     if (options !== undefined){
         for ([key, value] of Object.entries(options)) {
-            if (key != "classList" && key != "parent") {
+            if (key != "classList" && key != "parent" && key != "style") {
                 elem[key] = value;
             }
         }
     }
 
-    cL = options.classList
+    for (child of children)
+        elem.appendChild(child);
+
+    let cL = options.classList
+    let parent = options.parent
+    let style = options.style
     
     // Add all the classes of the element
     if (cL !== undefined) elem.classList.add(...cL)
 
     // Append the element to the provided parent element or document body
-    if (options.parent === undefined) parent = document.body
-    else parent = options.parent
+    if (parent !== undefined) parent.appendChild(elem);
 
-    parent.appendChild(elem);
+    if (style !== undefined) {
+        for ([key, value] of Object.entries(style)) {
+            elem.style[key] = value;
+        }
+    }
 
     return elem;
 }
@@ -99,26 +61,32 @@ function AEL( e, type, cbFunction ) {
 }
 
 // General purpose POST request
-async function post(url, headers, data, whatFailed) {
-    headers["Content-type"] = "application/json; charset=UTF-8"
+async function request(url, requestType, headers, data) {
+    if (requestType != "GET") headers["Content-type"] = "application/json; charset=UTF-8"
+    options = {
+        headers: headers,
+        method: requestType,
+        body: JSON.stringify(data)
+    }
+    if (requestType == "GET") delete options.body
+    
+    
     try {
-        res = await fetch(url, {
-            headers: headers,
-            method: "POST",
-            body: JSON.stringify(data)
-        }).then(res=>res);
+        res = await fetch(url, options)
+        .then(res => res);  
+        
+        // Status codes other than 200: Ok, 201: Created
+        if (res.status > 201 && res.status <= 511) {
+            err = await res.json()
+            alert(res.statusText, err.detail)
+            return null;
+        }
+
         return res;
     }
     catch(err) {
-        log(err);
-        customAlert(`${whatFailed} Failed", "Check your internet connection and Try Again`)
-        return false;
+        log(err)
+        alert('Something Went Wrong', 'Check your internet connection and Try Again')
+        return null;
     }
-}
-
-function visible(e, visibleBool) {
-    if (visibleBool)
-        e.style.display = "";
-    else
-        e.style.display = "none";
 }
